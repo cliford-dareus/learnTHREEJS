@@ -1,9 +1,10 @@
 const canvas = document.getElementById('webgl');
 import './style.css';
 import * as THREE from 'three';
+import ScrollMagic from 'scrollmagic';
 import { Mesh } from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import { gsap } from 'gsap';
+import { gsap, Linear } from 'gsap';
 
 const SIZE = {
   width: window.innerWidth,
@@ -102,4 +103,27 @@ window.addEventListener('mousemove',(e) => {
       {r: newColor.r, g: newColor.g, b: newColor.b}
     )
   }
+})
+
+// const tl2 = gsap.timeline()
+const controller = new ScrollMagic.Controller();
+
+// tl2.fromTo(
+//   'section.section.two',
+//   {xPercent: 100},
+//   {xPercent:0, ease: Linear.easeNone},
+//   '+=1'
+// )
+
+new ScrollMagic.Scene({
+  duration: '100%',
+  triggerElement: '.two',
+  triggerHook: 0
+})
+.setPin('.one')
+.addTo(controller)
+.addIndicators({
+  colorTrigger: 'white',
+  colorEnd: 'white',
+  colorStart: 'white'
 })
